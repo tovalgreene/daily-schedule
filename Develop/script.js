@@ -12,10 +12,14 @@ function saveEntry (idToSave) {
 
 $('#hour-9').find('#currentDay');
 
+var currentTime = day.js();
+var currentHour = day.js().format('h');
+
 function headerTime (){
   $('#currentDay').html(currentTime);
 }
 headerTime();
+
 
 var times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 console.log(currentTime)

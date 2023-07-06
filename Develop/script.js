@@ -4,14 +4,6 @@
 
 //if input in text area,s want to save to local storage
 //get text from text atorea, each have their own button
-function saveEntry(idToSave) {
-  var textarea = $(idToSave).find('textarea').text();
-  localStorage.setItem(idToSave, textarea);
-  console.log("I saved" + textarea)
-}
-
-$('#hour-9').find('#currentDay');
-
 var currentTime = dayjs();
 var currentHour = dayjs().format('h');
 
@@ -22,14 +14,13 @@ function headerTime() {
 headerTime();
 
 var times = ["9", "10", "11", "12", "1", "2", "3", "4", "5"];
-console.log(currentTime)
 
 var targetIndex;
 
 $(function () {
   for (let i = 0; i < times.length; i++) {
     if (times[i] === currentHour) {
-      var targetIndex = i;
+      targetIndex = i;
       $('#hour-' + times[i]).addClass('row time-block present');
     }
   }
@@ -39,13 +30,36 @@ $(function () {
   for (let i = targetIndex + 1; i < times.length; i++) {
     $('#hour-' + times[i]).addClass('row time-block future');
   }
-}
+});
+
+
+
+/*$(function saveEntry() 
+    $('.btn saveBtn col-2 col-md-1').click(function () {
+    var lineInput = $('#hour-' + times[index]).find('textarea').val();
+    localStorage.setItem('savedLine-' + times[index], lineInput);
+  }
+    );
+
+    saveEntry;*/
+
+function saveEntry(idToSave) {
+  $(button).click(function () {
+    var textarea = $(idToSave).find('textarea').text();
+    localStorage.setItem(idToSave, textarea);
+    console.log("I saved" + textarea)
+  })
+};
+
+saveEntry;
+
   //loop over indexes of array, for a given index, save that - var targetIndex
   //jeremy -- present
   //all indexes before -- past
   //all indexes after -- future
   //loop over elemetns in Array
   //set target = index
+
 
 
 
@@ -77,7 +91,7 @@ $(function () {
   // current hour in 24-hour time?
   //
 
-  //Puts time into box 
+  //Puts time into box
 
   //if it is current time, connect to current time class -- before connect to past class, future connect to future
 
@@ -86,4 +100,3 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-);

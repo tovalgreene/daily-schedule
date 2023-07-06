@@ -4,7 +4,7 @@
 
 //if input in text area,s want to save to local storage
 //get text from text atorea, each have their own button
-function saveEntry (idToSave) {
+function saveEntry(idToSave) {
   var textarea = $(idToSave).find('textarea').text();
   localStorage.setItem(idToSave, textarea);
   console.log("I saved" + textarea)
@@ -12,21 +12,51 @@ function saveEntry (idToSave) {
 
 $('#hour-9').find('#currentDay');
 
-var currentTime = day.js();
-var currentHour = day.js().format('h');
+var currentTime = dayjs();
+var currentHour = dayjs().format('h');
 
-function headerTime (){
+function headerTime() {
   $('#currentDay').html(currentTime);
 }
+
 headerTime();
 
-
-var times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+var times = ["9", "10", "11", "12", "1", "2", "3", "4", "5"];
 console.log(currentTime)
-//
+
+var targetIndex;
+
 $(function () {
-  $('#hour-9').find('button').click(function() {saveEntry('#hour-9')});
-  
+  for (let i = 0; i < times.length; i++) {
+    if (times[i] === currentHour) {
+      var targetIndex = i;
+      $('#hour-' + times[i]).addClass('row time-block present');
+    }
+  }
+  for (let i = 0; i < targetIndex; i++) {
+    $('#hour-' + times[i]).addClass('row time-block past');
+  }
+  for (let i = targetIndex + 1; i < times.length; i++) {
+    $('#hour-' + times[i]).addClass('row time-block future');
+  }
+}
+  //loop over indexes of array, for a given index, save that - var targetIndex
+  //jeremy -- present
+  //all indexes before -- past
+  //all indexes after -- future
+  //loop over elemetns in Array
+  //set target = index
+
+
+
+  //check if it's the current time
+  //if you haven't yet reached the current time, if it is the current time set to present, all others are future
+  //if you've found current in previous loops, then do future
+
+//
+//$(function () {
+  //$('#hour-9').find('button').click(function() {saveEntry('#hour-9')});
+
 
 
 //if it is current time, then class should be present
@@ -56,4 +86,4 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+);
